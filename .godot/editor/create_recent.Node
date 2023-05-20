@@ -1,0 +1,16 @@
+Timer
+AnimationPlayer
+MeshInstance3D
+StaticBody3D
+CollisionShape3D
+Area3D
+CharacterBody3D
+NavigationAgent3D
+Node3D
+NavigationRegion3D
+AudioStreamPlayer3D
+OmniLight3D
+SpotLight3D
+Node
+Camera3D
+DirectionalLight3D

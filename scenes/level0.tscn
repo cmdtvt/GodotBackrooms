@@ -1,0 +1,46 @@
+[gd_scene load_steps=9 format=3 uid="uid://cei8xslu6c2w"]
+
+[ext_resource type="Script" path="res://scripts/worldgen_v1.gd" id="1_v6q3a"]
+[ext_resource type="Environment" uid="uid://jkacflhdwbuw" path="res://enviroments/level1_env.tres" id="2_mcjnm"]
+[ext_resource type="PackedScene" uid="uid://diwnb70pujpln" path="res://scenes/components/Player_v2.tscn" id="3_0i4bk"]
+[ext_resource type="PackedScene" uid="uid://cbu7v67sm03d8" path="res://levels/level0/rooms/room_pillar_2.tscn" id="4_lh5u6"]
+[ext_resource type="PackedScene" uid="uid://bxcmvpudyauy3" path="res://assets/components/props/locker_01.tscn" id="6_tco6d"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g63as"]
+size = Vector3(10, 0.2, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8tsjo"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_uh1th"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_v6q3a")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_mcjnm")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_g63as")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D/CollisionShape3D"]
+transform = Transform3D(10, 0, 0, 0, 0.2, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("BoxMesh_8tsjo")
+skeleton = NodePath("../..")
+
+[node name="Player_v2" parent="." instance=ExtResource("3_0i4bk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -4)
+
+[node name="room" parent="." instance=ExtResource("4_lh5u6")]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_uh1th")
+
+[node name="Rooms" type="Node3D" parent="NavigationRegion3D"]
+
+[node name="Entities" type="Node3D" parent="."]
+
+[node name="locker_01" parent="." instance=ExtResource("6_tco6d")]
+transform = Transform3D(-0.38637, 0, 0.103528, 0, 0.4, 0, -0.103528, 0, -0.38637, 2.43597, 0.0981949, 0)
