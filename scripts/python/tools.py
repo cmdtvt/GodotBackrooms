@@ -33,4 +33,5 @@ class UtilityTools():
         temp = json.dumps(data,indent=4)
         with open(filename, 'w') as file:
             file.write(temp)
+        return temp
 

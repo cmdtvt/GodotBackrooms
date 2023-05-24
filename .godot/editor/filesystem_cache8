@@ -1,5 +1,5 @@
 2a60927148abd1d33b818b535e306557
-::res://::1684936320
+::res://::1684949282
 default_env.tres::Environment::7946332490768985796::1684331573::0::1::::<><>::
 icon.svg::CompressedTexture2D::5045511381540226826::1684325985::1684326001::1::::<><>::
 README.md::TextFile::-1::1684615695::0::1::::<><>::
@@ -87,7 +87,7 @@ level0.tscn::PackedScene::149181101804568012::1684797807::0::1::::<><>::res://sc
 ::res://scenes/components/::1684881155
 Player.tscn::PackedScene::7954975039270263730::1684336059::0::1::::<><>::res://scripts/player.gd
 Player_v2.tscn::PackedScene::7766981937548690791::1684881155::0::1::::<><>::res://scripts/Player_v2.gd
-::res://scripts/::1684881154
+::res://scripts/::1684938429
 decoration_spot.gd::GDScript::-1::1684414913::0::1::::<>Node3D<>::
 LightHandler.gd::GDScript::-1::1684617477::0::1::::<>Node<>::
 locker.gd::GDScript::-1::1684798959::0::1::::<>Node3D<>::
@@ -96,6 +96,7 @@ monster.gd::GDScript::-1::1684856635::0::1::::<>CharacterBody3D<>::
 player.gd::GDScript::-1::1684336232::0::1::::<>CharacterBody3D<>::
 Player_v2.gd::GDScript::-1::1684854844::0::1::::<>CharacterBody3D<>::
 utilities.gd::GDScript::-1::1684363558::0::1::::<>Node<>::
+WorldGenerator.gd::GDScript::-1::1684938429::0::1::::<>Node<>::
 worldgen_v1.gd::GDScript::-1::1684881154::0::1::::<>Node3D<>::
 ::res://scripts/old/::1684419474
 old_camera.gd::GDScript::-1::1684419474::0::1::::<>Spatial<>::
