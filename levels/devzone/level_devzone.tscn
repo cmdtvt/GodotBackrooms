@@ -1,0 +1,92 @@
+[gd_scene load_steps=11 format=3 uid="uid://cmop1ox8kdngd"]
+
+[ext_resource type="Script" path="res://levels/devzone/scripts/devzone.gd" id="1_agsc4"]
+[ext_resource type="PackedScene" uid="uid://cgj1xrlvkbw4f" path="res://levels/level0/rooms/room_template.tscn" id="1_jruds"]
+[ext_resource type="PackedScene" uid="uid://diwnb70pujpln" path="res://scenes/components/Player_v2.tscn" id="2_5lcua"]
+[ext_resource type="PackedScene" uid="uid://dgwh070a8tt50" path="res://levels/level0/rooms/room_door.tscn" id="3_hsanw"]
+[ext_resource type="PackedScene" uid="uid://b8augm2c0yo3o" path="res://levels/level0/rooms/room_wall_2.tscn" id="4_nkovs"]
+[ext_resource type="PackedScene" uid="uid://bg5au5ukcwph6" path="res://levels/level0/components/ceiling_lamp_01.tscn" id="5_7i1id"]
+[ext_resource type="PackedScene" uid="uid://b8bojiqy2niuc" path="res://assets/components/monster.tscn" id="6_kaqqi"]
+[ext_resource type="PackedScene" uid="uid://ddexubdes73ws" path="res://levels/level0/rooms/room_door_2.tscn" id="8_oat6k"]
+[ext_resource type="PackedScene" uid="uid://dipuutkk3itto" path="res://assets/components/props/locker_smart_01.tscn" id="9_wprnh"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_dt80r"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_agsc4")
+
+[node name="Player_v2" parent="." instance=ExtResource("2_5lcua")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 13.5973)
+
+[node name="ceiling_lamp_01" parent="." instance=ExtResource("5_7i1id")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.90951, 0)
+
+[node name="ceiling_lamp_02" parent="." instance=ExtResource("5_7i1id")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.61064, 3.72101, 0)
+
+[node name="ceiling_lamp_03" parent="." instance=ExtResource("5_7i1id")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.29816, 3.72101, 0)
+
+[node name="Monster" parent="." instance=ExtResource("6_kaqqi")]
+transform = Transform3D(-3.0598e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.0598e-08, 72.1416, 0, 0)
+ai_silent = true
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_dt80r")
+
+[node name="Rooms" type="Node3D" parent="NavigationRegion3D"]
+
+[node name="room" parent="NavigationRegion3D/Rooms" instance=ExtResource("1_jruds")]
+
+[node name="room2" parent="NavigationRegion3D/Rooms" instance=ExtResource("1_jruds")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
+
+[node name="room3" parent="NavigationRegion3D/Rooms" instance=ExtResource("1_jruds")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -10)
+
+[node name="room4" parent="NavigationRegion3D/Rooms" instance=ExtResource("1_jruds")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+
+[node name="room5" parent="NavigationRegion3D/Rooms" instance=ExtResource("3_hsanw")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 10)
+
+[node name="room6" parent="NavigationRegion3D/Rooms" instance=ExtResource("4_nkovs")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 20, 0, 0)
+
+[node name="room7" parent="NavigationRegion3D/Rooms" instance=ExtResource("4_nkovs")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 30, 0, 0)
+
+[node name="room8" parent="NavigationRegion3D/Rooms" instance=ExtResource("4_nkovs")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 40, 0, 0)
+
+[node name="room9" parent="NavigationRegion3D/Rooms" instance=ExtResource("4_nkovs")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 50, 0, 0)
+
+[node name="room10" parent="NavigationRegion3D/Rooms" instance=ExtResource("4_nkovs")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 60, 0, 0)
+
+[node name="room11" parent="NavigationRegion3D/Rooms" instance=ExtResource("4_nkovs")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 70, 0, 0)
+
+[node name="room12" parent="NavigationRegion3D/Rooms" instance=ExtResource("8_oat6k")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 10, 0, -20)
+
+[node name="room13" parent="NavigationRegion3D/Rooms" instance=ExtResource("8_oat6k")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 20, 0, -20)
+
+[node name="room14" parent="NavigationRegion3D/Rooms" instance=ExtResource("3_hsanw")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 20, 0, -10)
+
+[node name="Props" type="Node3D" parent="NavigationRegion3D"]
+
+[node name="locker_04" parent="NavigationRegion3D/Props" instance=ExtResource("9_wprnh")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -3.54383, 0.0912468, -8.89862)
+
+[node name="locker_06" parent="NavigationRegion3D/Props" instance=ExtResource("9_wprnh")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 15.7036, 0.0912468, -6.89993)
+
+[node name="locker_07" parent="NavigationRegion3D/Props" instance=ExtResource("9_wprnh")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 5.62883, 0.0912468, -20.4127)
+
+[node name="locker_05" parent="NavigationRegion3D/Props" instance=ExtResource("9_wprnh")]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 3.36794, 0.0912468, 4.36335)

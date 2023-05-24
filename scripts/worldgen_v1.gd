@@ -49,8 +49,8 @@ func _ready():
 			"group": null
 		}
 	}
-	#generator_v2(allFiles)
-	generator_v1()
+	generator_v2(allFiles)
+	#generator_v1()
 	
 	
 	#Handle spawning of the enemy entity.

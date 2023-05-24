@@ -6,7 +6,9 @@
 [ext_resource type="Material" uid="uid://de2pe0d6i1nxd" path="res://assets/materials/steel_gray.material" id="2_ia3c0"]
 [ext_resource type="Material" uid="uid://6kpfe0ilmvd4" path="res://assets/materials/color_red.material" id="3_ipsa6"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_qia8t"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ebfhq"]
+radius = 1.097
+height = 3.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_gj2by"]
 _surfaces = [{
@@ -206,8 +208,8 @@ script = ExtResource("1_s685v")
 agent_height_offset = 0.4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.11039, 0)
-shape = SubResource("BoxShape3D_qia8t")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.87606, 0)
+shape = SubResource("CapsuleShape3D_ebfhq")
 
 [node name="model" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
@@ -240,6 +242,9 @@ transform = Transform3D(0.0478558, 0, 0, 0, -0.166892, 1.55934e-08, 0, -5.43802e
 mesh = SubResource("ArrayMesh_n3giy")
 skeleton = NodePath("")
 
+[node name="Camera_Catch" type="Camera3D" parent="model/Rotator"]
+transform = Transform3D(-1.42857, 0, -1.2489e-07, 0, 1.42857, 0, 1.2489e-07, 0, -1.42857, 0, -0.202767, -2.36027)
+
 [node name="PrecenseArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.42857, 0)
 
@@ -257,6 +262,13 @@ one_shot = true
 [node name="Timer_Chase" type="Timer" parent="AudioStreamPlayer3D"]
 one_shot = true
 
+[node name="PlayerDetector" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.85714, -1.42857)
+target_position = Vector3(0, 0, -40)
+
+[node name="Timer_isChasing" type="Timer" parent="."]
+
 [connection signal="finished" from="AudioStreamPlayer3D" to="." method="_on_audio_stream_player_3d_finished"]
 [connection signal="timeout" from="AudioStreamPlayer3D/Timer_Loiter" to="." method="_on_timer_loiter_timeout"]
 [connection signal="timeout" from="AudioStreamPlayer3D/Timer_Chase" to="." method="_on_timer_chase_timeout"]
+[connection signal="timeout" from="Timer_isChasing" to="." method="_on_timer_is_chasing_timeout"]

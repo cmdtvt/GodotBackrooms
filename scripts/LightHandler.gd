@@ -8,13 +8,18 @@ var ison = true
 var safe = randi_range(0,100)
 var timer_offset = randi_range(0,15)
 
+
+#@export_flags("True","False", "Auto") var isSafe
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+
 	timer -= timer_offset
 	if safe > 50:
 		safe = true
 	else:
 		safe = false
+
 		
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
