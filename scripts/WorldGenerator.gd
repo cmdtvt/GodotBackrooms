@@ -49,6 +49,7 @@ func _ready():
 func GenerateV2():
 	var max_size = 10
 	var cur_size = 0
+	var offset = 10 #Size of one tile
 	
 	var current_x = 0
 	var current_z = 0
@@ -62,12 +63,12 @@ func GenerateV2():
 	for tile in newTiles:
 		var fname = tile["filename"]
 
-		var rotation_deg = [0,90,180,360][tile["rotation"]]
-		#var loadedTile = load(basedir+file)
+		#var rotation_deg = [0,90,180,360][tile["rotation"]]
+		#var loadedTile = load(basedir+fname)
 		#loadedTile = loadedTile.instantiate()
 		#loadedTile.rotate_y(deg_to_rad(rotation_deg))
-		#loadedTile.transform.origin = Vector3(x*offset,0,z*offset)
-		#$NavigationRegion3D/Rooms.add_child(scene)
+		#loadedTile.transform.origin = Vector3(current_x*offset,0,current_z*offset)
+		#$NavigationRegion3D/Rooms.add_child(loadedTile)
 
 
 	while cur_size < max_size:
@@ -81,20 +82,37 @@ func GenerateV2():
 				current_x -= 1
 			4:
 				current_x += 1
-		print(current_x,current_z)
 
 
-
+		#Check if rooms exsists in position
 		if [current_x,current_z] not in world:
+			
+			
+			#FIXME: This should return obj straight not array?
 			var ValidRoom = GetValidRoom("room_template.tscn",dirc,newTiles)
-			#print(ValidRoom)
+
+
+
+			world[[current_x,current_z]] = ValidRoom
+			
+			#FIXME: This is stupid please convert newTiles to dictionary
+			var ValidRoomData = null
+			for data in newTiles:
+				if data["filename"] == ValidRoom["filename"]:
+					ValidRoomData = data
+
 			
 			
-			#print(world[[0,0]])
-			var temp_x = current_x
-			var temp_z = current_z
-			world[[temp_x,temp_z]] = ValidRoom
-			#resp = newTiles[resp]
+			
+			var rotation_deg = [0,90,180,360][ValidRoomData["rotation"]]
+			var loadedTile = load(basedir+ValidRoomData["filename"])
+			loadedTile = loadedTile.instantiate()
+			loadedTile.rotate_y(deg_to_rad(rotation_deg))
+			loadedTile.transform.origin = Vector3(current_x*offset,0,current_z*offset)
+			$NavigationRegion3D/Rooms.add_child(loadedTile)
+			
+			
+			
 			cur_size += 1
 		else:
 			#If place for the room was alreayd taken.
@@ -103,10 +121,10 @@ func GenerateV2():
 			#This should remove dublicate rooms on same tile
 			var temp = GetRandomKeyFromDict(world)
 			current_x = temp[0]
-			current_z = temp[0]
+			current_z = temp[1]
 
 
-
+	print(world)
 
 
 
@@ -146,7 +164,11 @@ func GetValidRoom(currentroom,dirc,newTiles):
 			foundRooms.append(newTiles)
 			print("Found: "+str(temp)+" | "+str(wanted))
 	randomize()
-	return foundRooms[randi() % foundRooms.size()]
+	
+	#I have no idea why index 0 is needed in foundRooms? Where does the second
+	#List come from?
+	var randomChoise = foundRooms[0][randi() % foundRooms[0].size()]
+	return randomChoise
 	
 
 
