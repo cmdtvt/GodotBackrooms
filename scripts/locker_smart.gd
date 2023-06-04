@@ -45,8 +45,10 @@ func _process(delta):
 					player.PlayerHides(true)
 					
 		if hasHider:
-			if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+			if Input.is_action_just_pressed("sprint"):
 				anim.play("Peek")
+			elif Input.is_action_just_released("sprint"):
+				anim.play_backwards("Peek")
 				
 
 func _input(event):

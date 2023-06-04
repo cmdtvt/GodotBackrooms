@@ -49,6 +49,7 @@ func _ready():
 func GenerateV2():
 	var max_size = 10
 	var cur_size = 0
+	
 	var current_x = 0
 	var current_z = 0
 	var direction = 0
@@ -70,30 +71,37 @@ func GenerateV2():
 
 
 	while cur_size < max_size:
-		
-		direction = randi_range(1,4)	
-		if direction == 1:
-			current_z -= 1
-		elif direction == 2:
-			current_z += 1
-		elif direction == 3:
-			current_x -= 1
-		elif direction == 4:
-			current_x += 1
+		var dirc = randi_range(1,4)
+		match dirc:
+			1:
+				current_z -= 1
+			2:
+				current_z += 1
+			3:
+				current_x -= 1
+			4:
+				current_x += 1
+		print(current_x,current_z)
 
 
 
 		if [current_x,current_z] not in world:
-			var resp = GetValidRoom("room_template.tscn",direction,newTiles)
-			world[[current_x,current_z]] = resp
-			resp = newTiles[resp]
+			var ValidRoom = GetValidRoom("room_template.tscn",dirc,newTiles)
+			#print(ValidRoom)
+			
+			
+			#print(world[[0,0]])
+			var temp_x = current_x
+			var temp_z = current_z
+			world[[temp_x,temp_z]] = ValidRoom
+			#resp = newTiles[resp]
 			cur_size += 1
 		else:
 			#If place for the room was alreayd taken.
 			#Choose random position from already made rooms
 			#and continue from there
 			#This should remove dublicate rooms on same tile
-			var temp = GetRandomFromDict(world)
+			var temp = GetRandomKeyFromDict(world)
 			current_x = temp[0]
 			current_z = temp[0]
 
@@ -106,23 +114,20 @@ func GetRandomFromDict(dict):
 	var a = dict.keys()
 	a = a[randi() % a.size()]
 	return dict[a]
-
-
-
-
-
-func GetValidRoom(currentroom,direction,newTiles):
-	print(currentroom)
-	print(direction)
 	
-	if direction == 1:
-		direction = "up"
-	elif direction == 2:
-		direction = "down"
-	elif direction == 3:
-		direction = "left"
-	elif direction == 4:
-		direction = "right"
+func GetRandomKeyFromDict(dict):
+	var a = dict.keys()
+	a = a[randi() % a.size()]
+	return a
+
+
+
+
+
+func GetValidRoom(currentroom,dirc,newTiles):
+	
+	var dircs = {1:"up",2:"down",3:"left",4:"right"}
+	var direction = dircs[dirc]
 	
 	#Find data for certain rule with given filename
 	var cur = null
@@ -134,11 +139,13 @@ func GetValidRoom(currentroom,direction,newTiles):
 	var wanted = cur["sides"][direction]
 	var foundRooms = []
 	for tile in newTiles:
-		var temp = newTiles[tile]["type"]
+		#print("yeet")
+		#print(tile)
+		var temp = tile["type"]
 		if temp == wanted:
 			foundRooms.append(newTiles)
 			print("Found: "+str(temp)+" | "+str(wanted))
-	randomize()			
+	randomize()
 	return foundRooms[randi() % foundRooms.size()]
 	
 
@@ -151,6 +158,7 @@ func CreateAllRotations():
 			newTiles.append(CreateRoomData(tile,rotation))
 	return newTiles
 
+#Creates room's "json" data for certain rotation
 func CreateRoomData(tile,rotation):
 	var side_rot = {
 		0 : ["up","down","left","right"],

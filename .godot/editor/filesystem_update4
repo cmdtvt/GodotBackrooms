@@ -8,7 +8,7 @@ res://assets/materials/light_red.material
 res://assets/materials/steel_gray.material
 res://assets/materials/color_red.material
 res://assets/materials/steel_lightgray.material
-res://scripts/WorldGenerator.gd
-res://levels/devzone/scripts/devzone.gd
-res://scenes/level0.tscn
 res://enviroments/level1_env.tres
+res://scenes/level0.tscn
+res://assets/components/props/locker_smart_01.tscn
+res://scripts/WorldGenerator.gd
