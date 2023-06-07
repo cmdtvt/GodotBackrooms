@@ -1,4 +1,4 @@
-res://levels/devzone/level_devzone.tscn
+res://scenes/level0.tscn
 res://assets/materials/yellow_carpet.material
 res://assets/materials/ceiling_office2.material
 res://assets/materials/wallpaper_yellow.material
@@ -9,6 +9,4 @@ res://assets/materials/steel_gray.material
 res://assets/materials/color_red.material
 res://assets/materials/steel_lightgray.material
 res://enviroments/level1_env.tres
-res://scenes/level0.tscn
-res://assets/components/props/locker_smart_01.tscn
 res://scripts/WorldGenerator.gd

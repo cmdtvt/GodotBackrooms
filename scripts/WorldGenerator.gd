@@ -42,9 +42,49 @@ var td = [
 	}
 ]
 
+#https://ask.godotengine.org/35958/extending-an-inner-class-from-the-main-class
+#https://docs.godotengine.org/en/latest/tutorials/scripting/gdscript/gdscript_basics.html#inheritance
+class Tile:
+	
+	var type = "adadad"
+	var filename = ""
+	var rotation = 0
+	var sides = {
+		"up": null,
+		"down": null,
+		"left": null,
+		"right": null
+	}
+	
+	
+	func _init(gfilename,gtype,grotation,gsides=null):
+		if gsides != null:
+			sides = gsides
+			
+		filename = gfilename
+		type = gtype
+		rotation = grotation
+		
+	func GetFilename():
+		return filename
+		
+	func GetRotation():
+		return rotation
+		
+	func GetType():
+		return type
+		
+	func GetSides():
+		return sides
+
+
+
+
 
 func _ready():
-	GenerateV2()
+	var c = Tile.new("room_template.tscn","normal",0)
+	print(c.GetFilename())
+	#GenerateV2()
 
 func GenerateV2():
 	var max_size = 10
@@ -87,12 +127,8 @@ func GenerateV2():
 		#Check if rooms exsists in position
 		if [current_x,current_z] not in world:
 			
-			
 			#FIXME: This should return obj straight not array?
 			var ValidRoom = GetValidRoom("room_template.tscn",dirc,newTiles)
-
-
-
 			world[[current_x,current_z]] = ValidRoom
 			
 			#FIXME: This is stupid please convert newTiles to dictionary
@@ -101,17 +137,13 @@ func GenerateV2():
 				if data["filename"] == ValidRoom["filename"]:
 					ValidRoomData = data
 
-			
-			
-			
+
 			var rotation_deg = [0,90,180,360][ValidRoomData["rotation"]]
 			var loadedTile = load(basedir+ValidRoomData["filename"])
 			loadedTile = loadedTile.instantiate()
 			loadedTile.rotate_y(deg_to_rad(rotation_deg))
 			loadedTile.transform.origin = Vector3(current_x*offset,0,current_z*offset)
 			$NavigationRegion3D/Rooms.add_child(loadedTile)
-			
-			
 			
 			cur_size += 1
 		else:
@@ -122,11 +154,7 @@ func GenerateV2():
 			var temp = GetRandomKeyFromDict(world)
 			current_x = temp[0]
 			current_z = temp[1]
-
-
-	print(world)
-
-
+			
 
 func GetRandomFromDict(dict):
 	var a = dict.keys()
@@ -137,9 +165,6 @@ func GetRandomKeyFromDict(dict):
 	var a = dict.keys()
 	a = a[randi() % a.size()]
 	return a
-
-
-
 
 
 func GetValidRoom(currentroom,dirc,newTiles):
@@ -170,7 +195,6 @@ func GetValidRoom(currentroom,dirc,newTiles):
 	var randomChoise = foundRooms[0][randi() % foundRooms[0].size()]
 	return randomChoise
 	
-
 
 func CreateAllRotations():
 	var newTiles = []
