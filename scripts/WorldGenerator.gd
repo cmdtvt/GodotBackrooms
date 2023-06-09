@@ -1,11 +1,19 @@
 extends Node3D
 
-
 @export var max_rooms = 20
 var offset = 10
 var world = {}
 var loadedInstances = {}
 var basedir = "res://levels/level0/rooms/"
+
+
+func read_json_file(file):
+	var json_as_text = FileAccess.get_file_as_string(file)
+	var json_as_dict = JSON.parse_string(json_as_text)
+	if json_as_dict:
+		print(json_as_dict)
+		return json_as_dict
+
 var td = [
 	{
 		"filename": "room_template.tscn",
@@ -42,6 +50,7 @@ var td = [
 	}
 ]
 
+
 #https://ask.godotengine.org/35958/extending-an-inner-class-from-the-main-class
 #https://docs.godotengine.org/en/latest/tutorials/scripting/gdscript/gdscript_basics.html#inheritance
 class Tile:
@@ -76,15 +85,15 @@ class Tile:
 		
 	func GetSides():
 		return sides
-
-
-
+	
+	func GetSide(gside):
+		return sides[gside]
 
 
 func _ready():
-	var c = Tile.new("room_template.tscn","normal",0)
-	print(c.GetFilename())
-	#GenerateV2()
+	#var c = Tile.new("room_template.tscn","normal",0)
+	td = read_json_file("res://scripts/python/output.json")
+	GenerateV2()
 
 func GenerateV2():
 	var max_size = 10
@@ -97,18 +106,6 @@ func GenerateV2():
 	var world = {[0,0]:"start"}
 
 	var newTiles = CreateAllRotations()
-	
-	
-	#Preload and store instanced rooms
-	for tile in newTiles:
-		var fname = tile["filename"]
-
-		#var rotation_deg = [0,90,180,360][tile["rotation"]]
-		#var loadedTile = load(basedir+fname)
-		#loadedTile = loadedTile.instantiate()
-		#loadedTile.rotate_y(deg_to_rad(rotation_deg))
-		#loadedTile.transform.origin = Vector3(current_x*offset,0,current_z*offset)
-		#$NavigationRegion3D/Rooms.add_child(loadedTile)
 
 
 	while cur_size < max_size:
@@ -133,13 +130,12 @@ func GenerateV2():
 			
 			#FIXME: This is stupid please convert newTiles to dictionary
 			var ValidRoomData = null
-			for data in newTiles:
-				if data["filename"] == ValidRoom["filename"]:
-					ValidRoomData = data
+			for tile in newTiles:
+				if tile.GetFilename() == ValidRoom["filename"]:
+					ValidRoomData = tile
 
-
-			var rotation_deg = [0,90,180,360][ValidRoomData["rotation"]]
-			var loadedTile = load(basedir+ValidRoomData["filename"])
+			var rotation_deg = [0,90,180,360][ValidRoomData.GetRotation()]
+			var loadedTile = load(basedir+ValidRoomData.GetFilename())
 			loadedTile = loadedTile.instantiate()
 			loadedTile.rotate_y(deg_to_rad(rotation_deg))
 			loadedTile.transform.origin = Vector3(current_x*offset,0,current_z*offset)
@@ -168,7 +164,6 @@ func GetRandomKeyFromDict(dict):
 
 
 func GetValidRoom(currentroom,dirc,newTiles):
-	
 	var dircs = {1:"up",2:"down",3:"left",4:"right"}
 	var direction = dircs[dirc]
 	
@@ -182,8 +177,6 @@ func GetValidRoom(currentroom,dirc,newTiles):
 	var wanted = cur["sides"][direction]
 	var foundRooms = []
 	for tile in newTiles:
-		#print("yeet")
-		#print(tile)
 		var temp = tile["type"]
 		if temp == wanted:
 			foundRooms.append(newTiles)
@@ -199,11 +192,15 @@ func GetValidRoom(currentroom,dirc,newTiles):
 func CreateAllRotations():
 	var newTiles = []
 	for tile in td:
-		newTiles.append(tile)
+		print(tile)
+		newTiles.append(Tile.new(tile["filename"],tile["type"],tile["rotation"],tile["sides"]))
+		
 		for rotation in range(1,4):
-			newTiles.append(CreateRoomData(tile,rotation))
+			newTiles.append(Tile.new(tile["filename"],tile["type"],rotation,tile["sides"]))
+			
 	return newTiles
 
+#Old system for creating tiledata as dict
 #Creates room's "json" data for certain rotation
 func CreateRoomData(tile,rotation):
 	var side_rot = {

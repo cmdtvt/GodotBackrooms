@@ -15,12 +15,6 @@ rooms = [
 	"room_door_2.tscn"
 ]
 
-rooms = [
-	"room_template.tscn",
-	"room_wall_1.tscn",
-	"room_wall_2.tscn",
-]
-
 
 #group kertoo minkä niminen tile on ja sidet ketroo minkä nimisiä
 #tilejä haluaa virekkäin

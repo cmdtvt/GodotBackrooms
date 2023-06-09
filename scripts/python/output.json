@@ -1,101 +1,101 @@
-{
-    "room_template": {
-        "instance": "room_template.tscn",
-        "direction": 0,
-        "sides": {
-            "up": null,
-            "down": null,
-            "left": null,
-            "right": null
-        },
-        "group": null
-    },
-    "room_wall_1": {
-        "instance": "room_wall_1.tscn",
-        "direction": 0,
-        "sides": {
-            "up": null,
-            "down": null,
-            "left": null,
-            "right": null
-        },
-        "group": null
-    },
-    "room_wall_2": {
-        "instance": "room_wall_2.tscn",
-        "direction": 0,
-        "sides": {
-            "up": null,
-            "down": null,
-            "left": null,
-            "right": null
-        },
-        "group": null
-    },
-    "room_wall_3": {
-        "instance": "room_wall_3.tscn",
-        "direction": 0,
-        "sides": {
-            "up": null,
-            "down": null,
-            "left": null,
-            "right": null
-        },
-        "group": null
-    },
-    "room_pillar": {
-        "instance": "room_pillar.tscn",
-        "direction": 0,
-        "sides": {
-            "up": null,
-            "down": null,
-            "left": null,
-            "right": null
-        },
-        "group": null
-    },
-    "room_pillar_2": {
-        "instance": "room_pillar_2.tscn",
-        "direction": 0,
-        "sides": {
-            "up": null,
-            "down": null,
-            "left": null,
-            "right": null
-        },
-        "group": null
-    },
-    "room_wall_corner": {
-        "instance": "room_wall_corner.tscn",
-        "direction": 0,
-        "sides": {
-            "up": null,
-            "down": null,
-            "left": null,
-            "right": null
-        },
-        "group": null
-    },
-    "room_door": {
-        "instance": "room_door.tscn",
-        "direction": 0,
-        "sides": {
-            "up": null,
-            "down": null,
-            "left": null,
-            "right": null
-        },
-        "group": null
-    },
-    "room_door_2": {
-        "instance": "room_door_2.tscn",
-        "direction": 0,
-        "sides": {
-            "up": null,
-            "down": null,
-            "left": null,
-            "right": null
-        },
-        "group": null
-    }
-}
+[
+	{
+		"filename": "room_template.tscn",
+		"rotation": 0,
+		"sides": {
+			"up": null,
+			"down": null,
+			"left": null,
+			"right": null
+		},
+		"type": null
+	},
+	{
+		"filename": "room_wall_1.tscn",
+		"rotation": 0,
+		"sides": {
+			"up": null,
+			"down": null,
+			"left": null,
+			"right": null
+		},
+		"type": null
+	},
+	{
+		"filename": "room_wall_2.tscn",
+		"rotation": 0,
+		"sides": {
+			"up": null,
+			"down": null,
+			"left": null,
+			"right": null
+		},
+		"type": null
+	},
+	{
+		"filename": "room_wall_3.tscn",
+		"rotation": 0,
+		"sides": {
+			"up": null,
+			"down": null,
+			"left": null,
+			"right": null
+		},
+		"type": null
+	},
+	{
+		"filename": "room_pillar.tscn",
+		"rotation": 0,
+		"sides": {
+			"up": null,
+			"down": null,
+			"left": null,
+			"right": null
+		},
+		"type": null
+	},
+	{
+		"filename": "room_pillar_2.tscn",
+		"rotation": 0,
+		"sides": {
+			"up": null,
+			"down": null,
+			"left": null,
+			"right": null
+		},
+		"type": null
+	},
+	{
+		"filename": "room_wall_corner.tscn",
+		"rotation": 0,
+		"sides": {
+			"up": null,
+			"down": null,
+			"left": null,
+			"right": null
+		},
+		"type": null
+	},
+	{
+		"filename": "room_door.tscn",
+		"rotation": 0,
+		"sides": {
+			"up": null,
+			"down": null,
+			"left": null,
+			"right": null
+		},
+		"type": null
+	},
+	{
+		"filename": "room_door_2.tscn",
+		"rotation": 0,
+		"sides": {
+			"up": null,
+			"down": null,
+			"left": null,
+			"right": null
+		},
+		"type": null
+	}
+]
