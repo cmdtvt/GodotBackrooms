@@ -10,5 +10,4 @@ res://assets/materials/color_red.material
 res://assets/materials/steel_lightgray.material
 res://enviroments/level1_env.tres
 res://scenes/level0.tscn
-res://scripts/WorldGenerator.gd
-res://scripts/python/output.json
+res://scenes/components/Player_v2.tscn

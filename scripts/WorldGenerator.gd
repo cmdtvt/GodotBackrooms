@@ -55,7 +55,7 @@ var td = [
 #https://docs.godotengine.org/en/latest/tutorials/scripting/gdscript/gdscript_basics.html#inheritance
 class Tile:
 	
-	var type = "adadad"
+	var type = null
 	var filename = ""
 	var rotation = 0
 	var sides = {
@@ -177,6 +177,8 @@ func GetValidRoom(currentroom,dirc,newTiles):
 	var wanted = cur["sides"][direction]
 	var foundRooms = []
 	for tile in newTiles:
+		
+		#Get current tile's correct side with direction
 		var temp = tile["type"]
 		if temp == wanted:
 			foundRooms.append(newTiles)
