@@ -11,3 +11,5 @@ res://assets/materials/steel_lightgray.material
 res://enviroments/level1_env.tres
 res://scenes/level0.tscn
 res://scenes/components/Player_v2.tscn
+res://assets/components/props/locker_smart_01.tscn
+res://scripts/locker_smart.gd

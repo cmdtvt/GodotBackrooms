@@ -93,6 +93,7 @@ class Tile:
 func _ready():
 	#var c = Tile.new("room_template.tscn","normal",0)
 	td = read_json_file("res://scripts/python/output.json")
+	print(td)
 	GenerateV2()
 
 func GenerateV2():
@@ -182,7 +183,7 @@ func GetValidRoom(currentroom,dirc,newTiles):
 		var temp = tile["type"]
 		if temp == wanted:
 			foundRooms.append(newTiles)
-			print("Found: "+str(temp)+" | "+str(wanted))
+			#print("Found: "+str(temp)+" | "+str(wanted))
 	randomize()
 	
 	#I have no idea why index 0 is needed in foundRooms? Where does the second
